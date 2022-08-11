@@ -17,18 +17,21 @@ body {
 }
 
 .right {
-    width: 380px;
+    width: 30%;
     height: 100%;
     background-color: white;
     height: 100vh;
 }
 
 .center {
-    width: calc(100% - 380px - 270px);
     overflow: auto;
     background-color: rgb(245, 245, 245);
     height: 100vh;
-    padding: 30px;
+    padding: 0 30px;
+}
+
+.center::-webkit-scrollbar {
+    display: none;
 }
 
 .logo {
@@ -83,9 +86,11 @@ body {
 .productTitle {
     font-size: 24px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 30px 0;
     padding: 10px 0;
 }
+
+
 
 .product {
     display: flex;
@@ -114,4 +119,90 @@ body {
     width: 70%;
     padding: 5px 0;
 
+}
+
+.product_text_icon > span {
+
+    margin-right: 10px;
+
+}
+
+.product_text_icon > span > i {
+    border-radius: 20px;
+    padding: 6px;
+    border: 1px solid rgb(0, 0, 0);
+    display: inline-block;
+}
+
+.product_text_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+}
+
+
+.btu_group {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    width: fit-content;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.btu_group > button {
+    background : none;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.orderNum {
+    width: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.user_group {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    margin: 0 40px;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.user_name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.user_btn {
+    padding: 10px 12px;
+    border: 1px black solid;
+    border-radius: 6px;
+}
+
+.order_group {
+    padding: 30px 0;
+    margin: 0 40px;
+}
+
+.order_title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.myOrder {
+    height: 600px;
+    max-height: 600px;
+}
+
+.order_sum_name {
+    font-size: 18px;
+    font-weight: bold;
 }
