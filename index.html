@@ -12,7 +12,10 @@
     <div class="content">
         <nav class="left">
             <div class="logo">
-                LOGO
+
+                <i class="fa-solid fa-burger"></i>
+                <span>Happy Day</span>
+
             </div>
 
             <div class="listGroup">
@@ -208,7 +211,9 @@
 
                 </div>
 
-
+                <br>
+                <br>
+                <br>
             </div>
         </div>
 
@@ -238,9 +243,12 @@
                 <div class="order_sum">
                     <div class="order_sum_name">Total</div>
                     
-                    <div class="order_sum_num"></div>
+                    <div class="order_sum_num">$<span>0</span></div>
                 </div>
 
+                <div class="order_btn">
+                    <button type="button">CheckOut</button>
+                </div>
 
             </div>
 
@@ -251,6 +259,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
 
     <script>
+        function Total() {
+            
+            var originNum = new Array();
+            $('.orderNum').each((key,val)=>{
+                originNum.push($(val).text());
+            })
+    
+            var price = new Array();
+            $('.product_text_price > span').each((key,val)=>{
+                price.push($(val).text());
+            })
+    
+            let total = 0;
+    
+            originNum.forEach((element,key) => {
+                
+                total += element*price[key];
+    
+            });
+            
+    
+            console.log(total);
+    
+            $('.order_sum_num > span').text(total);
+        }
+
+
+        // 增加的按鈕
         $('.btu_group').on('click','.addBtn',function(){
 
             let num = Number($(this).next().text());
@@ -261,14 +297,21 @@
             let product_text_price = $(this).parents('.product').find('.product_text_price').children('span').text();
             let product_img = $(this).parents('.product').find('.product_img').children().attr('src');
 
-            // console.log(product_img);
+            // 選項加一
             num += 1;
 
+            // 寫進顯示數字區
             $(this).next().text(num);
 
-            console.log($('.myOrder').find('.order_text_title'));
+            let id_num = new Array();
 
-            // if($('.myOrder').find('.order_text_title').text() == true){
+            // 抓取購物車中的商品id放進陣列
+            $('.myOrder').find('.order_product').each(function(key,val){
+                id_num.push($(val).data('id'));
+            })
+
+            // 如果購物車還沒有這筆商品
+            if(id_num.includes(product_id) != true){
 
                 let order_list = '';
     
@@ -305,23 +348,130 @@
                         
                         </div>`
             
-                $('.myOrder').remove('p');
+                // 刪掉本來裡面的提示訊息
+                $('.myOrder').children('p').fadeOut();
+                // 插入我要顯示的內容
                 $('.myOrder').append(order_list);
-            // }
+            }else{
+                // 如果有這筆商品了
 
+                // 更改顯示數量
+                $('.myOrder').children(`.order_product[data-id='${product_id}']`).find('.NeworderNum').text(num);
+                
+            }
+
+            Total();
         })
 
+        // 減少的按鈕
         $('.btu_group').on('click','.reduceBtn',function(){
+            let product_id = $(this).parents('.product').data('id');
 
             let num = Number($(this).prev().text());
+
+
+            let id_num = new Array();
+
+            // 抓取購物車中的商品id放進陣列
+            $('.myOrder').find('.order_product').each(function(key,val){
+                id_num.push($(val).data('id'));
+            })
 
             if(num > 0){
 
                 num -= 1;
                 $(this).prev().text(num)
 
+
+            // 如果購物車還沒有這筆商品
+            if(id_num.includes(product_id) == true){
+
+                $('.myOrder').children(`.order_product[data-id='${product_id}']`).find('.NeworderNum').text(num);
             }
+
+            }
+            
+            if(num <= 0){
+                $('.myOrder').children(`.order_product[data-id='${product_id}']`).remove();
+
+                if($('.myOrder').children('.order_product').length == 0){
+                    $('.myOrder').children('p').fadeIn();
+                }
+            }
+            
+            Total();
+
         })
+    
+        // 購物車的增加按鈕
+        $('.myOrder').on('click','.order_addBtn',function(){
+
+            let num = Number($(this).next().text());
+
+            // 選項加一
+            num += 1;
+
+            // 寫進顯示數字區
+            $(this).next().text(num);
+
+            let product_id = $(this).parents('.order_product').data('id');
+
+            // 更改顯示數量
+            $('.productGroup').children(`.product[data-id='${product_id}']`).find('.orderNum').text(num);
+
+            Total();
+
+        })
+
+        // 購物車的減少按鈕
+        $('.myOrder').on('click','.order_reduceBtn',function(){
+
+            let product_id = $(this).parents('.order_product').data('id');
+
+            let num = Number($(this).prev().text());
+
+            if(num > 0){
+
+            num -= 1;
+            $(this).prev().text(num)
+
+            // 更改顯示數量
+            $('.productGroup').children(`.product[data-id='${product_id}']`).find('.orderNum').text(num);
+
+            }
+
+            if(num == 0){
+                $(this).parents('.order_product').remove();
+
+                if($('.myOrder').children().length == 1){
+
+                    $('.myOrder').children('p').fadeIn();
+                }
+
+            }
+
+            Total();
+
+        })
+
+        // 購物車的刪除按鈕
+        $('.myOrder').on('click','.delBtn',function(){
+            let product_id = $(this).parents('.order_product').data('id');
+
+            $(this).parents('.order_product').remove();
+
+            $('.productGroup').children(`.product[data-id='${product_id}']`).find('.orderNum').text('0');
+
+            if($('.myOrder').children().length == 1){
+
+            $('.myOrder').children('p').fadeIn();
+            }
+
+            Total();
+
+        })
+    
+
     </script>
 </body>
 
