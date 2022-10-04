@@ -477,9 +477,9 @@
 
         })
 
-        $('.menu_btn').on('click',function(){
-            $(this).hide();
-            $(this).next().show();
+        $('.menu_btn i').on('click',function(){
+            $(this).parent().hide();
+            $(this).parent().next().show();
             $('.right').hide();
             $('.cart_btn').show();
 
@@ -490,9 +490,9 @@
             $('.left').hide();
         })
 
-        $('.cart_btn').on('click',function(){
-            $(this).hide();
-            $(this).next().show();
+        $('.cart_btn i').on('click',function(){
+            $(this).parent().hide();
+            $(this).parent().next().show();
             $('.left').hide();
             $('.menu_btn').show();
 
