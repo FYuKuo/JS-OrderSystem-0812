@@ -482,12 +482,17 @@
             $(this).parent().next().show();
             $('.right').hide();
             $('.cart_btn').show();
+            $(this).parent().next().addClass('nowLeft');
+            $(this).parent().addClass('hide_menu_btn');
 
         })
 
         $('.center,.right').on('click',function(){
-            $('.menu_btn').show();
-            $('.left').hide();
+            $('.hide_menu_btn').show();
+            $('.nowLeft').hide();
+            $('.left').removeClass('nowLeft');
+            $('.menu_btn').removeClass('hide_menu_btn');
+
         })
 
         $('.cart_btn i').on('click',function(){
@@ -495,12 +500,15 @@
             $(this).parent().next().show();
             $('.left').hide();
             $('.menu_btn').show();
-
+            $(this).parent().next().addClass('nowRight');
+            $(this).parent().addClass('hide_cart_btn');
         })
 
         $('.center,.left').on('click',function(){
-            $('.cart_btn').show();
-            $('.right').hide();
+            $('.hide_cart_btn').show();
+            $('.nowRight').hide();
+            $('.right').removeClass('nowRight');
+            $('.cart_btn').removeClass('hide_cart_btn');
         })
     
 
