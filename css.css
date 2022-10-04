@@ -489,6 +489,9 @@ body {
         border-radius: 10px 10px 0 0;
     }
 
+    .right {
+        width: 70%;
+    }
 }
 
 @media (max-width:476px) {
@@ -498,6 +501,6 @@ body {
     }
 
     .order_product {
-        height: 300px;
+        height: 260px;
     }
 }

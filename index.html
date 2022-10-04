@@ -487,7 +487,7 @@
 
         })
 
-        $('.center,.right').on('click',function(){
+        $('.center,.right,.cart_btn').on('click',function(){
             $('.hide_menu_btn').show();
             $('.nowLeft').hide();
             $('.left').removeClass('nowLeft');
@@ -504,7 +504,7 @@
             $(this).parent().addClass('hide_cart_btn');
         })
 
-        $('.center,.left').on('click',function(){
+        $('.center,.left,.menu_btn').on('click',function(){
             $('.hide_cart_btn').show();
             $('.nowRight').hide();
             $('.right').removeClass('nowRight');
