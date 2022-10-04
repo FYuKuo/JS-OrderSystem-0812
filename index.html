@@ -10,6 +10,9 @@
 </head>
 <body>
     <div class="content">
+        <div class="menu_btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
         <nav class="left">
             <div class="logo">
 
@@ -217,6 +220,9 @@
             </div>
         </div>
 
+        <div class="cart_btn">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
         <div class="right">
             <div class="user_group">
                 <div class="user_name">
@@ -469,6 +475,32 @@
 
             Total();
 
+        })
+
+        $('.menu_btn').on('click',function(){
+            $(this).hide();
+            $(this).next().show();
+            $('.right').hide();
+            $('.cart_btn').show();
+
+        })
+
+        $('.center,.right').on('click',function(){
+            $('.menu_btn').show();
+            $('.left').hide();
+        })
+
+        $('.cart_btn').on('click',function(){
+            $(this).hide();
+            $(this).next().show();
+            $('.left').hide();
+            $('.menu_btn').show();
+
+        })
+
+        $('.center,.left').on('click',function(){
+            $('.cart_btn').show();
+            $('.right').hide();
         })
     
 
